@@ -3,16 +3,14 @@
     'use strict';
 
     angular
-        .module('app.sample')
+        .module('app.pages.sample')
         .controller('SampleController', SampleController);
 
     /** @ngInject */
-    function SampleController(SampleData)
+    function SampleController(SampleData,$scope)
     {
-        var vm = this;
-
-        // Data
-        vm.helloText = SampleData.data.helloText;
+              // Data
+        $scope.helloText = SampleData.data.helloText;
 
         // Methods
 

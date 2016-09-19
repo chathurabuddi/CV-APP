@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.pages.sample', [])
+        .module('app.pages.cvUpload', [])
         .config(config);
 
     /** @ngInject */
@@ -11,43 +11,34 @@
     {
         // State
         $stateProvider
-            .state('app.sample', {
-                url    : '/sampl',
+            .state('app.cvupload', {
+                url    : '/cvupload',
                 views  : {
                     'content@app': {
-                        templateUrl: 'app/main/sample/sample.html',
-                        controller : 'SampleController'
+                        templateUrl: 'app/main/cvs/uploadcv/cvUpload.html',
+                        controller : 'CVUpload'
                     }
                 },
-                resolve: {
-                    SampleData: function (msApi)
-                    {
-                        return msApi.resolve('sample@get');
-                    }
-                }
             });
 
-        // Translation
-        $translatePartialLoaderProvider.addPart('app/main/sample');
 
         // Api
         msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('cvapp', {
-            title : 'SAMPLE',
+            title : 'CV',
             group : true,
             weight: 0
         });
 
-        msNavigationServiceProvider.saveItem('cvapp.sample', {
-            title    : 'Sample',
+        msNavigationServiceProvider.saveItem('cvapp.cvupload', {
+            title    : 'Upload CV',
             icon     : 'icon-tile-four',
-            state    : 'app.sample',
+            state    : 'app.cvupload',
             /*stateParams: {
                 'param1': 'page'
              },*/
-            translate: 'SAMPLE.SAMPLE_NAV',
             weight   : 1
         });
     }
