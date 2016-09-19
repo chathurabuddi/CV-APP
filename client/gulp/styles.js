@@ -1,54 +1,61 @@
 'use strict';
 
+var path = require('path');
 var gulp = require('gulp');
+var conf = require('./conf');
 
-var paths = gulp.paths;
+var browserSync = require('browser-sync');
 
 var $ = require('gulp-load-plugins')();
 
-gulp.task('styles', function () {
+var wiredep = require('wiredep').stream;
+var _ = require('lodash');
 
-  var sassOptions = {
-    style: 'expanded',
-    'sourcemap=none': true
-  };
-
-  var injectFiles = gulp.src([
-    paths.src + '/{app,components}/**/*.scss',
-    '!' + paths.src + '/app/index.scss',
-    '!' + paths.src + '/app/vendor.scss'
-  ], { read: false });
-
-  var injectOptions = {
-    transform: function(filePath) {
-      filePath = filePath.replace(paths.src + '/app/', '');
-      filePath = filePath.replace(paths.src + '/components/', '../components/');
-      return '@import \'' + filePath + '\';';
-    },
-    starttag: '// injector',
-    endtag: '// endinjector',
-    addRootSlash: false
-  };
-
-  var indexFilter = $.filter('index.scss');
-
-  return gulp.src([
-    paths.src + '/app/index.scss',
-    paths.src + '/app/vendor.scss'
-  ])
-    .pipe(indexFilter)
-    .pipe($.inject(injectFiles, injectOptions))
-    .pipe(indexFilter.restore())
-    .pipe($.rubySass(sassOptions)
-      .on('error', function (err) {
-        console.error('Error!', err.message);
-      })
-    )
-
-  .pipe($.autoprefixer())
-    .on('error', function handleError(err) {
-      console.error(err.toString());
-      this.emit('end');
-    })
-    .pipe(gulp.dest(paths.tmp + '/serve/app/'));
+gulp.task('styles-reload', ['styles'], function ()
+{
+    return buildStyles()
+        .pipe(browserSync.stream());
 });
+
+gulp.task('styles', function ()
+{
+    return buildStyles();
+});
+
+var buildStyles = function ()
+{
+    var sassOptions = {
+        style: 'expanded'
+    };
+
+    var injectFiles = gulp.src([
+        path.join(conf.paths.src, '/app/core/scss/**/*.scss'),
+        path.join(conf.paths.src, '/app/core/**/*.scss'),
+        path.join(conf.paths.src, '/app/**/*.scss'),
+        path.join('!' + conf.paths.src, '/app/main/components/material-docs/demo-partials/**/*.scss'),
+        path.join('!' + conf.paths.src, '/app/core/scss/partials/**/*.scss'),
+        path.join('!' + conf.paths.src, '/app/index.scss')
+    ], {read: false});
+
+    var injectOptions = {
+        transform   : function (filePath)
+        {
+            filePath = filePath.replace(conf.paths.src + '/app/', '');
+            return '@import "' + filePath + '";';
+        },
+        starttag    : '// injector',
+        endtag      : '// endinjector',
+        addRootSlash: false
+    };
+
+    return gulp.src([
+            path.join(conf.paths.src, '/app/index.scss')
+        ])
+        .pipe($.inject(injectFiles, injectOptions))
+        .pipe(wiredep(_.extend({}, conf.wiredep)))
+        .pipe($.sourcemaps.init())
+        .pipe($.sass(sassOptions)).on('error', conf.errorHandler('Sass'))
+        .pipe($.autoprefixer()).on('error', conf.errorHandler('Autoprefixer'))
+        .pipe($.sourcemaps.write())
+        .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')));
+};
