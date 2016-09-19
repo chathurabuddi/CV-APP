@@ -1,0 +1,11 @@
+<div class="page-layout blank" layout="row">
+  <!-- <div>
+    <h3 ng-repeat="z in cvList">{{z.name}}</h3>
+  </div> -->
+  <div class="">
+    <div ng-repeat="z in cvList" style="float:left">
+      <ms-card template="'app/main/cvs/temp.html'" ng-model="z">
+      </ms-card>
+    </div>
+  </div>
+</div>
