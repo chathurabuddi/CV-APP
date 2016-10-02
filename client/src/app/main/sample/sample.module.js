@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.pages.sample', [])
+        .module('app.sample', [])
         .config(config);
 
     /** @ngInject */
@@ -12,11 +12,11 @@
         // State
         $stateProvider
             .state('app.sample', {
-                url    : '/sampl',
+                url    : '/sample',
                 views  : {
                     'content@app': {
                         templateUrl: 'app/main/sample/sample.html',
-                        controller : 'SampleController'
+                        controller : 'SampleController as vm'
                     }
                 },
                 resolve: {
@@ -34,13 +34,13 @@
         msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('cvapp', {
+        msNavigationServiceProvider.saveItem('fuse', {
             title : 'SAMPLE',
             group : true,
-            weight: 0
+            weight: 1
         });
 
-        msNavigationServiceProvider.saveItem('cvapp.sample', {
+        msNavigationServiceProvider.saveItem('fuse.sample', {
             title    : 'Sample',
             icon     : 'icon-tile-four',
             state    : 'app.sample',

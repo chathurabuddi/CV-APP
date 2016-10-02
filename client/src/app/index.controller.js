@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('cvapp')
+        .module('fuse')
         .controller('IndexController', IndexController);
 
     /** @ngInject */

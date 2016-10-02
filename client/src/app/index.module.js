@@ -6,7 +6,7 @@
      * Main module of the Fuse
      */
     angular
-        .module('cvapp', [
+        .module('fuse', [
 
             // Core
             'app.core',
@@ -20,7 +20,8 @@
             // Quick Panel
             'app.quick-panel',
 
-            // Pages
+            // pages
             'app.pages'
+
         ]);
 })();

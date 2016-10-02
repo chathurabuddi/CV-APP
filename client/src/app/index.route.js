@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('cvapp')
+        .module('fuse')
         .config(routeConfig);
 
     /** @ngInject */
@@ -32,6 +32,41 @@
             }
         ]);
 
+        // Get active layout
+        var layoutStyle = $cookies.get('layoutStyle') || 'verticalNavigation';
+
+        var layouts = {
+            verticalNavigation  : {
+                main      : 'app/core/layouts/vertical-navigation.html',
+                toolbar   : 'app/toolbar/layouts/vertical-navigation/toolbar.html',
+                navigation: 'app/navigation/layouts/vertical-navigation/navigation.html'
+            },
+            verticalNavigationFullwidthToolbar  : {
+                main      : 'app/core/layouts/vertical-navigation-fullwidth-toolbar.html',
+                toolbar   : 'app/toolbar/layouts/vertical-navigation-fullwidth-toolbar/toolbar.html',
+                navigation: 'app/navigation/layouts/vertical-navigation/navigation.html'
+            },
+            verticalNavigationFullwidthToolbar2  : {
+                main      : 'app/core/layouts/vertical-navigation-fullwidth-toolbar-2.html',
+                toolbar   : 'app/toolbar/layouts/vertical-navigation-fullwidth-toolbar-2/toolbar.html',
+                navigation: 'app/navigation/layouts/vertical-navigation-fullwidth-toolbar-2/navigation.html'
+            },
+            horizontalNavigation: {
+                main      : 'app/core/layouts/horizontal-navigation.html',
+                toolbar   : 'app/toolbar/layouts/horizontal-navigation/toolbar.html',
+                navigation: 'app/navigation/layouts/horizontal-navigation/navigation.html'
+            },
+            contentOnly         : {
+                main      : 'app/core/layouts/content-only.html',
+                toolbar   : '',
+                navigation: ''
+            },
+            contentWithToolbar  : {
+                main      : 'app/core/layouts/content-with-toolbar.html',
+                toolbar   : 'app/toolbar/layouts/content-with-toolbar/toolbar.html',
+                navigation: ''
+            }
+        };
         // END - Layout Style Switcher
 
         // State definitions
@@ -40,15 +75,15 @@
                 abstract: true,
                 views   : {
                     'main@'         : {
-                        templateUrl: 'app/core/layouts/vertical-navigation.html',
+                        templateUrl: layouts[layoutStyle].main,
                         controller : 'MainController as vm'
                     },
                     'toolbar@app'   : {
-                        templateUrl: 'app/toolbar/layouts/vertical-navigation/toolbar.html',
+                        templateUrl: layouts[layoutStyle].toolbar,
                         controller : 'ToolbarController as vm'
                     },
                     'navigation@app': {
-                        templateUrl: 'app/navigation/layouts/vertical-navigation/navigation.html',
+                        templateUrl: layouts[layoutStyle].navigation,
                         controller : 'NavigationController as vm'
                     },
                     'quickPanel@app': {
