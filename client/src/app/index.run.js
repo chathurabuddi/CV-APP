@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('fuse')
+        .module('cvapp')
         .run(runBlock);
 
     /** @ngInject */

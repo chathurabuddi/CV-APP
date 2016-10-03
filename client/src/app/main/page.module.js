@@ -8,6 +8,8 @@
     angular
         .module('app.pages', [
             'app.pages.cvUpload',
-            'app.pages.cvView'
+            'app.pages.cvView',
+            'app.pages.login',
+            'app.pages.register'
         ]);
 })();
