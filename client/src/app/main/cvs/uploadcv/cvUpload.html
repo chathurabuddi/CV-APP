@@ -1,11 +1,12 @@
 <ms-form-wizard flex>
+
   <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
     <md-tab>
       <md-tab-label>
         <span class="ms-form-wizard-step-label">
                     <span class="ms-form-wizard-step-number md-accent-bg"
-                          ng-if="wizardStep1.$invalid">1</span>
-        <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
+                          ng-if="Info.$invalid">1</span>
+        <span class="ms-form-wizard-step-number md-accent-bg" ng-if="Info.$valid">
                         <i class="icon-check s16"></i>
                     </span>
         <span class="ms-form-wizard-step-text">Personal Information</span>
@@ -13,11 +14,12 @@
       </md-tab-label>
 
       <md-tab-body>
-        <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
+        <form name="Info" class="md-inline-form" ms-form-wizard-form novalidate>
           <div layout="column" layout-gt-xs="row" flex>
             <md-input-container flex="100" flex-gt-xs="50">
-              <input type="text" name="firstname" ng-model="formWizard.firstname" placeholder="Firstname" required>
-              <div ng-messages="wizardStep1.firstname.$error" role="alert">
+
+              <input type="text" name="firstname" ng-model="formData.firstname" placeholder="Firstname" required>
+              <div ng-messages="Info.firstname.$error" role="alert">
                 <div ng-message="required">
                   <span>Firstname field is required.</span>
                 </div>
@@ -25,8 +27,8 @@
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="50">
-              <input type="text" name="lastname" ng-model="formWizard.lastname" placeholder="Lastname" required>
-              <div ng-messages="wizardStep1.lastname.$error" role="alert">
+              <input type="text" name="lastname" ng-model="formData.lastname" placeholder="Lastname" required>
+              <div ng-messages="Info.lastname.$error" role="alert">
                 <div ng-message="required">
                   <span>Lastname field is required.</span>
                 </div>
@@ -35,8 +37,8 @@
           </div>
 
           <md-input-container class="md-block">
-            <input type="email" name="email" ng-model="formWizard.email" placeholder="Email" ng-pattern="/^.+@.+\..+$/" required>
-            <div ng-messages="wizardStep1.email.$error" role="alert" multiple>
+            <input type="email" name="email" ng-model="formData.email" placeholder="Email" ng-pattern="/^.+@.+\..+$/" required>
+            <div ng-messages="Info.email.$error" role="alert" multiple>
               <div ng-message="required">
                 <span>Email field is required</span>
               </div>
@@ -48,8 +50,8 @@
 
           <div layout="column" layout-gt-sm="row" flex>
             <md-input-container flex="100" flex-gt-xs="50">
-              <input type="number" name="mobilenumber" ng-model="formWizard.mobilenumber" placeholder="Mobile Number">
-              <div ng-messages="wizardStep1.number.$error" role="alert">
+              <input type="number" name="mobilenumber" ng-model="formData.mobilenumber" placeholder="Mobile Number">
+              <div ng-messages="Info.number.$error" role="alert">
                 <div ng-message="required">
                   <span>Password field is required.</span>
                 </div>
@@ -57,8 +59,8 @@
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="50">
-              <input type="number" name="telnumber" ng-model="formWizard.telnumber" placeholder="Telephone Number">
-              <div ng-messages="wizardStep1.telnumber.$error" role="alert">
+              <input type="number" name="telnumber" ng-model="formData.telnumber" placeholder="Telephone Number">
+              <div ng-messages="Info.telnumber.$error" role="alert">
               </div>
             </md-input-container>
           </div>
@@ -66,12 +68,12 @@
       </md-tab-body>
     </md-tab>
 
-    <md-tab ng-disabled="wizardStep1.$invalid">
+    <md-tab ng-disabled="Info.$invalid">
       <md-tab-label>
         <span class="ms-form-wizard-step-label">
                     <span class="ms-form-wizard-step-number md-accent-bg"
-                          ng-if="wizardStep2.$invalid">2</span>
-        <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
+                          ng-if="Info2.$invalid">2</span>
+        <span class="ms-form-wizard-step-number md-accent-bg" ng-if="Info2.$valid">
                         <i class="icon-check s16"></i>
                     </span>
         <span class="ms-form-wizard-step-text">Upload CV</span>
@@ -79,24 +81,37 @@
       </md-tab-label>
 
       <md-tab-body>
-        <form name="wizardStep2" ms-form-wizard-form novalidate>
-          <h1>Select your company prefrence</h1>
-          <div class="" ng-controller="CVUpload">
-            <md-input-container>
-              <label>companies</label>
-              <md-select ng-model="selectedVegetables" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple>
+        <form name="Info2"  ms-form-wizard-form novalidate>
+          <h3>Select your company preference (Maximum 3 companies)</h3>
+          <div layout="column" layout-gt-xs="row" flex>
+            <md-input-container flex="50" flex-gt-xs="40">
+              <md-select ng-model="formData.selected" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple>
                 <md-select-header class="demo-select-header">
-                  <input ng-model="searchTerm" type="search" placeholder="Search for a company.." class="demo-header-searchbox md-text">
+                  <input ng-model="searchTerm" type="search" placeholder="Select Companies" class="demo-header-searchbox md-text" >
                 </md-select-header>
                 <md-optgroup label="companies">
-                  <md-option ng-value="ccc" ng-repeat="c in companies |
-                filter:searchTerm">{{c}}</md-option>
+                  <md-option  ng-repeat="c in companies |
+                filter:searchTerm" >{{c}}</md-option>
                 </md-optgroup>
               </md-select>
+
             </md-input-container>
+            <md-input-container flex="50" flex-gt-xs="50">
 
-          </div>
+          </md-input-container>
+        </div>
+        <div layout="column" layout-gt-xs="row" flex>
+        <md-input-container flex="50" flex-gt-xs="40">
+          <div class="simple-table-container md-whiteframe-4dp">
+          <table class="simple" ms-responsive-table>
 
+            <tbody>
+        <tr ng-repeat="x in formData.selected"><td class="text-center">{{x}}</td> </tr>
+      </tbody>
+        </table>
+      </div>
+      </md-input-container>
+    </div>
         </form>
       </md-tab-body>
     </md-tab>
@@ -112,12 +127,9 @@
     <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()">
       Next
     </md-button>
-    <md-button class="md-raised md-warn" ng-click="sendForm(); msWizard.resetForm();" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
+    <md-button class="md-raised md-warn" ng-click="sendForm()" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
       Send
     </md-button>
   </div>
 
 </ms-form-wizard>
-<!-- / FORM WIZARD -->
-
-</div>

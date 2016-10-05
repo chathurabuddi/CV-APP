@@ -6,7 +6,7 @@
     .controller('CVUpload', CVUpload);
 
   /** @ngInject */
-  function CVUpload($scope,$element) {
+  function CVUpload($scope, $element) {
     $scope.list = ['test', 'rrr', 'ffff'];
     $scope.companies = ['WSO2', '99X', 'MIT', 'Cambio', 'IFS', 'Code Gen'];
     $scope.searchTerm;
@@ -19,9 +19,18 @@
       ev.stopPropagation();
     });
     //print($scope.ccc);
+    $scope.formData={};
+  $scope.formData.selected=[];
+
+    $scope.sendForm= function(){
+      //console.log($scope.formData.selected.length);
+      if($scope.formData.selected.length!=3){
+        toastr.error("Please select 3 companies");
+      }
+      console.log($scope.formData);
+      console.log($scope.formData.selected);
+    }
 
   }
-  function print(x){
-    console.log(x);
-  }
+
 })();
