@@ -7,8 +7,23 @@
 
   /** @ngInject */
   function CVUpload($scope, $element) {
-    $scope.list = ['test', 'rrr', 'ffff'];
-    $scope.companies = ['WSO2', '99X', 'MIT', 'Cambio', 'IFS', 'Code Gen'];
+    $scope.companies = [{
+      name: 'MIT',
+      catv: true,
+      cat: ['SE', 'BA', 'QA','PM'],
+
+    }, {
+      name: '99X',
+      catv: true,
+      cat: ['SE', 'BA', 'QA'],
+
+    }, {
+      name: 'Caklabs',
+      catv: false,
+      cat: [],
+
+    }];
+
     $scope.searchTerm;
     $scope.clearSearchTerm = function() {
       $scope.searchTerm = '';
@@ -19,16 +34,49 @@
       ev.stopPropagation();
     });
     //print($scope.ccc);
-    $scope.formData={};
-  $scope.formData.selected=[];
+    $scope.formData = {};
 
-    $scope.sendForm= function(){
-      //console.log($scope.formData.selected.length);
-      if($scope.formData.selected.length!=3){
-        toastr.error("Please select 3 companies");
+    $scope.$watch('formData.company1', function() {
+      for (var i = 0; i < $scope.companies.length; i++) {
+        if ($scope.companies[i].name == $scope.formData.company1) {
+          $scope.selectedObject = $scope.companies[i];
+          if($scope.selectedObject.catv==false){
+            $scope.formData.position1="";
+          }
+          $scope.secondpre = true;
+        }
       }
+    });
+
+    $scope.$watch('formData.company2', function() {
+      for (var i = 0; i < $scope.companies.length; i++) {
+        if ($scope.companies[i].name == $scope.formData.company2) {
+          $scope.selectedObject1 = $scope.companies[i];
+          if($scope.selectedObject1.catv==false){
+            $scope.formData.position2="";
+          }
+          $scope.thirdpre=true;
+
+        }
+      }
+    });
+    $scope.$watch('formData.company3', function() {
+      for (var i = 0; i < $scope.companies.length; i++) {
+        if ($scope.companies[i].name == $scope.formData.company3) {
+          $scope.selectedObject2 = $scope.companies[i];
+          if($scope.selectedObject2.catv==false){
+            $scope.formData.position3="";
+          }
+
+        }
+      }
+    });
+
+
+    $scope.sendForm = function() {
+
+      //console.log($scope.formData.selected.length);
       console.log($scope.formData);
-      console.log($scope.formData.selected);
     }
 
   }

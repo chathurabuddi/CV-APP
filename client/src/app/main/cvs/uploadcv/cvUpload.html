@@ -81,37 +81,61 @@
       </md-tab-label>
 
       <md-tab-body>
-        <form name="Info2"  ms-form-wizard-form novalidate>
-          <h3>Select your company preference (Maximum 3 companies)</h3>
+        <form name="Info2" ms-form-wizard-form novalidate>
+          <h3>Select your company preference</h3>
           <div layout="column" layout-gt-xs="row" flex>
-            <md-input-container flex="50" flex-gt-xs="40">
-              <md-select ng-model="formData.selected" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple>
-                <md-select-header class="demo-select-header">
-                  <input ng-model="searchTerm" type="search" placeholder="Select Companies" class="demo-header-searchbox md-text" >
-                </md-select-header>
-                <md-optgroup label="companies">
-                  <md-option  ng-repeat="c in companies |
-                filter:searchTerm" >{{c}}</md-option>
-                </md-optgroup>
-              </md-select>
-
+            <md-input-container flex="50" flex-gt-xs="30">
+              <lable> First Prefernce </label>
+                <md-select ng-model="formData.company1" data-md-container-class="selectdemoSelectHeader" required>
+                    <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
+                </md-select>
             </md-input-container>
-            <md-input-container flex="50" flex-gt-xs="50">
-
-          </md-input-container>
-        </div>
-        <div layout="column" layout-gt-xs="row" flex>
-        <md-input-container flex="50" flex-gt-xs="40">
-          <div class="simple-table-container md-whiteframe-4dp">
-          <table class="simple" ms-responsive-table>
-
-            <tbody>
-        <tr ng-repeat="x in formData.selected"><td class="text-center">{{x}}</td> </tr>
-      </tbody>
-        </table>
-      </div>
-      </md-input-container>
-    </div>
+            <md-input-container flex="50" flex-gt-xs="10">
+            </md-input-container>
+            <md-input-container flex="40" flex-gt-xs="30">
+              <lable ng-show="selectedObject.catv">Position</label>
+              <md-select ng-show="selectedObject.catv" ng-model="formData.position1"  data-md-container-class="selectdemoSelectHeader">
+                  <md-option ng-repeat="x in selectedObject.cat" value="{{x}}">{{x}}</md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container flex="40" flex-gt-xs="10">
+            </md-input-container>
+            <md-input-container flex="50" flex-gt-xs="10">
+              <button class="md-accent md-raised md-hue-1 md-button md-default-theme md-ink-ripple">Select your CV</button>
+            </md-input-container>
+          </div>
+          <div layout="column" layout-gt-xs="row" flex>
+            <md-input-container flex="50" flex-gt-xs="30">
+              <lable ng-show="secondpre"> Second Prefernce </label>
+                <md-select ng-show="secondpre" ng-model="formData.company2" data-md-container-class="selectdemoSelectHeader" required>
+                    <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container flex="50" flex-gt-xs="10">
+            </md-input-container>
+            <md-input-container flex="40" flex-gt-xs="30">
+              <lable ng-show="selectedObject1.catv">Position</label>
+              <md-select ng-show="selectedObject1.catv" ng-model="formData.position2"  data-md-container-class="selectdemoSelectHeader">
+                  <md-option ng-repeat="x in selectedObject1.cat" value="{{x}}">{{x}}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+          <div layout="column" layout-gt-xs="row" flex>
+            <md-input-container flex="50" flex-gt-xs="30">
+              <lable ng-show="thirdpre"> Third Prefernce </label>
+                <md-select ng-show="thirdpre" ng-model="formData.company3" data-md-container-class="selectdemoSelectHeader" required>
+                    <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
+                </md-select>
+            </md-input-container>
+            <md-input-container flex="50" flex-gt-xs="10">
+            </md-input-container>
+            <md-input-container flex="40" flex-gt-xs="30">
+              <lable ng-show="selectedObject2.catv">Position</label>
+              <md-select ng-show="selectedObject2.catv" ng-model="formData.position3"  data-md-container-class="selectdemoSelectHeader">
+                  <md-option ng-repeat="x in selectedObject2.cat" value="{{x}}">{{x}}</md-option>
+              </md-select>
+            </md-input-container>
+          </div>
         </form>
       </md-tab-body>
     </md-tab>
@@ -128,7 +152,7 @@
       Next
     </md-button>
     <md-button class="md-raised md-warn" ng-click="sendForm()" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
-      Send
+      UPLOAD CV
     </md-button>
   </div>
 
