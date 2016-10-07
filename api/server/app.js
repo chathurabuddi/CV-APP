@@ -1,6 +1,11 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var session      = require('express-session');
+var cookieParser = require('cookie-parser');
+var path = require('path');
 // var multer = require('multer');
 // var util = require('util'),
 //     inspect = require('util').inspect;
@@ -13,8 +18,7 @@ var bodyParser = require('body-parser');
 // var newname;
 // var newRecord = {};
 
-
-
+require('./config/passport')(passport);
 
 
 app.use(function(req, res, next) { //allow cross origin requests
@@ -26,8 +30,16 @@ app.use(function(req, res, next) { //allow cross origin requests
 
 /** Serving from the same express Server
 No cors required */
-app.use(express.static('../client'));
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser());
+app.use(express.static('../client/dist'));
 app.use(bodyParser.json());
+
+app.use(function(req, res) {
+    // Use res.sendfile, as it streams instead of reading the file into memory.
+    res.sendfile(path.resolve('../client/dist/index.html'));
+});
+
 
 // var storage = multer.diskStorage({ //multers disk storage settings
 //     destination: function (req, file, cb) {
@@ -82,15 +94,24 @@ app.use(bodyParser.json());
 //
 // });
 
+
 app.use('/upload', require('./controllers/cvupload.controller'));
 
 app.use('/companylist',require('./controllers/companylist.controller'));
+
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
+
+require('./controllers/userauth.controller')(app, passport);
 
 
 // //Todo
 // app.use('/getcvlist',require('./controllers/........'));  //get cv list for givin company
 // app.use('/getcvifno',require('./controllers/........'));  // get cv info for givin user
 // app.use('/updateCV', require('./controllers/cvupload.controller'));
+
 
 
 app.listen('3000', function(){
