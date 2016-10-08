@@ -18,6 +18,23 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use('/upload', require('./controllers/cvupload.controller'));
+app.use('/companylist', require('./controllers/companylist.controller'));
+//get cv list for givin company
+app.use('/getCvList', require('./controllers/companycvlist.controller'));
+// get the givin cv and update the givin cv
+app.use('/manageCv', require('./controllers/manageCV.controller'));
+
+
+
+// passport js related
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
+require('./controllers/userauth.controller')(app, passport);
+
+
 
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser());
@@ -28,17 +45,7 @@ app.use(function(req, res) {
     res.sendfile(path.resolve('../client/dist/index.html'));
 });
 
-//aplication end points
-app.use('/upload', require('./controllers/cvupload.controller'));
-app.use('/companylist',require('./controllers/companylist.controller'));
 
-
-// passport js related
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash());
-require('./controllers/userauth.controller')(app, passport);
 
 
 

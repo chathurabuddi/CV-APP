@@ -3,28 +3,35 @@ var router = express.Router();
 var request = require('request');
 var config = require('config.json');
 
+var db = require('./db').db;
 
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://localhost:27017/mycvapp", { native_parser: true });
-db.bind('compaylist');
+db.bind('cvData');
 
-var commpaylistArray  = [];
+// cvpath:{$in:[req.body.id,"comma separated elemenet"]}
 
-router.get('/', function (req, res) {
-    commpaylistArray  = [];
-    db.collection('compaylist').find({}, function(err, result) {
-    result.each(function(err, band) {
-      if (band !== null) {
-        commpaylistArray.push(band.name);
-        console.log(band.name);
-      }else{
-        // end of the loop when null encounter
-        console.log(commpaylistArray);
-        return res.json(commpaylistArray);
-      }
+var cvArray = [];
+router.post('/', function(req, res) {
+    cvArray = []; //remove elemet in the list for every request
+    console.log(req.body.id);
+    db.collection('cvData').find({
+        $or: [{
+            cvpath: req.body.id
+        }, {
+            cvpath: "lol"
+        }]
+
+    }, function(err, result) {
+        result.each(function(err, band) {
+            if (band !== null) {
+                cvArray.push(band);
+                //console.log(band.name);
+            } else {
+                // end of the loop when null encounter
+                console.log(cvArray);
+                return res.json(cvArray);
+            }
+        });
     });
-});
-
 });
 
 module.exports = router;

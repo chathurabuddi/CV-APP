@@ -4,24 +4,21 @@ var request = require('request');
 var config = require('config.json');
 
 
-
 // var mongo = require('mongoskin');
 // var db = mongo.db("mongodb://localhost:27017/mycvapp", {
 //     native_parser: true
 // });
-
 var db = require('./db').db;
-db.bind('compaylist');
+db.bind('cvData');
 
 var commpaylistArray = [];
-
-router.get('/', function(req, res) {
+router.get('/new', function(req, res) {
     commpaylistArray = []; //remove elemet in the list for every request
-    db.collection('compaylist').find({}, function(err, result) {
-        result.each(function(err, data) {
-            if (data !== null) {
-                commpaylistArray.push(data);
-                console.log(data);
+    db.collection('cvData').find({}, function(err, result) {
+        result.each(function(err, band) {
+            if (band !== null) {
+                commpaylistArray.push(band.name);
+                console.log(band.name);
             } else {
                 // end of the loop when null encounter
                 console.log(commpaylistArray);
