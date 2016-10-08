@@ -28,6 +28,7 @@ app.use('/manageCv', require('./controllers/manageCV.controller'));
 
 
 // passport js related
+app.use(cookieParser());
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -36,7 +37,7 @@ require('./controllers/userauth.controller')(app, passport);
 
 
 
-app.use(cookieParser()); // read cookies (needed for auth)
+ // read cookies (needed for auth)
 app.use(bodyParser());
 app.use(express.static('../client/dist'));
 app.use(bodyParser.json());
