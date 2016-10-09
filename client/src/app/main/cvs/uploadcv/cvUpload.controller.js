@@ -79,7 +79,7 @@
       console.log("--->end");
 
       file.upload = Upload.upload({
-        url: 'http://localhost:8080/upload',
+        url: ' http://104.131.11.107:8080/upload',
         data: {
           file: file,
           fname:$scope.formData.firstname,
