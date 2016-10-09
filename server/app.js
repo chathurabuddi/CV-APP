@@ -7,6 +7,8 @@ var session      = require('express-session');
 var cookieParser = require('cookie-parser');
 var path = require('path');
 
+
+
 require('./config/passport')(passport);
 
 app.use(function(req, res, next) {
@@ -16,8 +18,11 @@ app.use(function(req, res, next) {
     next();
 });
 
+
 app.use(bodyParser());
 app.use(bodyParser.json());
+
+
 
 // read cookies (needed for auth)
 app.use(cookieParser());
@@ -41,12 +46,13 @@ app.get('/register2', function(req, res) {
 
 require('./controllers/userauth.controller')(app, passport);
 
+app.use(express.static('uploads'));
 app.use(express.static('../client/dist'));
 // Use res.sendfile, as it streams instead of reading the file into memory.
 app.use(function(req, res) {
     res.sendfile(path.resolve('../client/dist/index.html'));
 });
 
-app.listen('3000', function(){
-    console.log('running on 3000...');
+app.listen('8080', function(){
+    console.log('running on 8080...');
 });

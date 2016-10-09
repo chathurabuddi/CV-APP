@@ -18,7 +18,7 @@
           <div layout="column" layout-gt-xs="row" flex>
             <md-input-container flex="100" flex-gt-xs="50">
 
-              <input type="text" name="firstname" ng-model="formData.firstname" placeholder="Firstname" required>
+              <input type="text" name="firstname" ng-model="formData.firstname" placeholder="Firstname" >
               <div ng-messages="Info.firstname.$error" role="alert">
                 <div ng-message="required">
                   <span>Firstname field is required.</span>
@@ -27,7 +27,7 @@
             </md-input-container>
 
             <md-input-container flex="100" flex-gt-xs="50">
-              <input type="text" name="lastname" ng-model="formData.lastname" placeholder="Lastname" required>
+              <input type="text" name="lastname" ng-model="formData.lastname" placeholder="Lastname" >
               <div ng-messages="Info.lastname.$error" role="alert">
                 <div ng-message="required">
                   <span>Lastname field is required.</span>
@@ -86,8 +86,10 @@
           <div layout="column" layout-gt-xs="row" flex>
             <md-input-container flex="50" flex-gt-xs="30">
               <lable> First Prefernce </label>
+
                 <md-select ng-model="formData.company1" data-md-container-class="selectdemoSelectHeader" required>
                   <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
+
                 </md-select>
             </md-input-container>
             <md-input-container flex="50" flex-gt-xs="10">
@@ -100,6 +102,7 @@
             </md-input-container>
             <md-input-container flex="40" flex-gt-xs="10">
             </md-input-container>
+
             <md-input-container flex="100" flex-gt-xs="10">
               <input class="md-raised md-warn" type="file" ngf-select ng-model="formData.picFile" name="file" accept="document/pdf" ngf-max-size="6MB" ngf-pattern="'.pdf'" required ngf-model-invalid="errorFile">
               <i ng-show="Info2.file.$error.required">*required</i><br>
@@ -107,6 +110,7 @@
           {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
               <img ng-show="Info2.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
               <br>
+
               <!-- <button class="md-accent md-raised md-hue-1 md-button md-default-theme md-ink-ripple">Select your CV</button> -->
             </md-input-container>
           </div>
@@ -148,6 +152,14 @@
   </md-tabs>
 
   <div class="navigation" flex layout="row" layout-align="center center">
+
+    <span class="progress" ng-show="formData.picFile.progress >= 0">
+   	        <div style="width:{{formData.picFile.progress}}%"
+   	            ng-bind="formData.picFile.progress + '%'"></div>
+   	      </span>
+   	      <span ng-show="formData.picFile.result">Upload Successful</span>
+   	      <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+
     <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()" ng-disabled="msWizard.isFirstStep()">
       Previous
     </md-button>
@@ -157,7 +169,7 @@
     <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()" ng-hide="msWizard.isLastStep()" ng-disabled="msWizard.currentStepInvalid()">
       Next
     </md-button>
-    <md-button class="md-raised md-warn" ng-click="sendForm()" ng-show="msWizard.isLastStep()" ng-disabled="msWizard.formsIncomplete()">
+    <md-button class="md-raised md-warn" ng-click="sendForm(formData.picFile)" ng-show="msWizard.isLastStep()">
       UPLOAD CV
     </md-button>
   </div>

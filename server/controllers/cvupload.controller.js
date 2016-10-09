@@ -42,7 +42,9 @@ router.get('/lol', function(req, res) {
 
 router.post('/', function(req, res) {
     upload(req, res, function(err) {
+      console.log("here we are");
         if (err) {
+          console.log("errr" + err);
             return res.json({
                 error_code: 1,
                 err_desc: err
@@ -50,6 +52,7 @@ router.post('/', function(req, res) {
             // return; // if error occor exit form here
         }
     });
+
     // if file upload complete
     var busboy = new Busboy({
         headers: req.headers
@@ -86,6 +89,7 @@ router.post('/', function(req, res) {
         error_code: 0,
         err_desc: null
     });
+
 
 });
 
