@@ -9,16 +9,17 @@ db.bind('cvData');
 
 // cvpath:{$in:[req.body.id,"comma separated elemenet"]}
 
+//$or: [{
+//    cvpath: req.body.id
+//}, {
+//    cvpath: "lol"
+//}]
+
 var cvArray = [];
 router.post('/', function(req, res) {
     cvArray = []; //remove elemet in the list for every request
     console.log(req.body.id);
     db.collection('cvData').find({
-        $or: [{
-            cvpath: req.body.id
-        }, {
-            cvpath: "lol"
-        }]
 
     }, function(err, result) {
         result.each(function(err, band) {

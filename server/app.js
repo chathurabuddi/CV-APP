@@ -11,12 +11,20 @@ var path = require('path');
 require('./config/passport')(passport);
 
 
+
+
 app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
     res.header("Access-Control-Allow-Origin", "http://localhost");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+app.use(bodyParser());
+app.use(express.static('../client/dist'));
+app.use(bodyParser.json());
+
+app.use(express.static('public'));
 
 app.use('/upload', require('./controllers/cvupload.controller'));
 app.use('/companylist', require('./controllers/companylist.controller'));
@@ -28,15 +36,16 @@ app.use('/manageCv', require('./controllers/manageCV.controller'));
 
 
 // passport js related
+app.use(cookieParser());
 app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
+
 require('./controllers/userauth.controller')(app, passport);
 
 
-
-app.use(cookieParser()); // read cookies (needed for auth)
+// read cookies (needed for auth)
 app.use(bodyParser());
 app.use(express.static('../client/dist'));
 app.use(bodyParser.json());
@@ -45,6 +54,15 @@ app.use(function(req, res) {
     res.sendfile(path.resolve('../client/dist/index.html'));
 });
 
+// app.use(session({
+//   secret: 'appsecret',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//     secure: true,
+//     maxAge: new Date(Date.now() + 3600000)
+//   }
+// }));
 
 
 

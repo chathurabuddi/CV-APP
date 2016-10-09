@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.sample', [])
+        .module('app.pages.viewCv', [])
         .config(config);
 
     /** @ngInject */
@@ -11,43 +11,34 @@
     {
         // State
         $stateProvider
-            .state('app.sample', {
-                url    : '/sample',
+            .state('app.viewCv', {
+                url    : '/viewcv',
                 views  : {
                     'content@app': {
-                        templateUrl: 'app/main/sample/sample.html',
-                        controller : 'SampleController as vm'
+                        templateUrl: 'app/main/cvs/viewcv/viewCv.html',
+                        controller : 'viewCv'
                     }
                 },
-                resolve: {
-                    SampleData: function (msApi)
-                    {
-                        return msApi.resolve('sample@get');
-                    }
-                }
             });
 
-        // Translation
-        $translatePartialLoaderProvider.addPart('app/main/sample');
 
         // Api
         msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
-            title : 'SAMPLE',
+            title : 'viewCv',
             group : true,
             weight: 1
         });
 
-        msNavigationServiceProvider.saveItem('fuse.sample', {
+        msNavigationServiceProvider.saveItem('fuse.viewCv', {
             title    : 'Sample',
             icon     : 'icon-tile-four',
-            state    : 'app.sample',
+            state    : 'app.viewCv',
             /*stateParams: {
                 'param1': 'page'
              },*/
-            translate: 'SAMPLE.SAMPLE_NAV',
             weight   : 1
         });
     }

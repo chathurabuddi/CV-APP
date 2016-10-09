@@ -6,23 +6,28 @@
     .controller('CVUpload', CVUpload);
 
   /** @ngInject */
-  function CVUpload($scope, $element) {
-    $scope.companies = [{
-      name: 'MIT',
-      catv: true,
-      cat: ['SE', 'BA', 'QA','PM'],
+  // function CVUpload($scope, $element) {
+  //   $scope.companies = [{
+  //     name: 'MIT',
+  //     catv: true,
+  //     cat: ['SE', 'BA', 'QA','PM'],
+  //
+  //   }, {
+  //     name: '99X',
+  //     catv: true,
+  //     cat: ['SE', 'BA', 'QA'],
+  //
+  //   }, {
+  //     name: 'Caklabs',
+  //     catv: false,
+  //     cat: [],
+  //
+  //   }];
 
-    }, {
-      name: '99X',
-      catv: true,
-      cat: ['SE', 'BA', 'QA'],
-
-    }, {
-      name: 'Caklabs',
-      catv: false,
-      cat: [],
-
-    }];
+  function CVUpload($scope, $element,$http) {
+    $http.get('/companylist').success(function(response) {
+        $scope.companies = response;
+    });
 
     $scope.searchTerm;
     $scope.clearSearchTerm = function() {
@@ -73,15 +78,15 @@
     });
 
 
-    $scope.sendForm = function() {
+    $scope.sendForm = function(file) {
 
       //console.log($scope.formData.selected.length);
       console.log($scope.formData);
+      console.log(file);
+      console.log($scope.picFile);
     }
 
   }
 
 
 })();
-
-

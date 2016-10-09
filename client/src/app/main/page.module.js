@@ -10,6 +10,7 @@
             'app.pages.cvUpload',
             'app.pages.cvView',
             'app.pages.login',
-            'app.pages.register'
+            'app.pages.register',
+            'app.pages.viewCv'
         ]);
 })();

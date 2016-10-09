@@ -12,4 +12,11 @@
     <div class="media ml-16">
         <img class="image" ng-src="{{card.img}}" alt="" ng-show="card.img">
     </div>
+    <button type="button"> <a href="http://localhost:3000/viewcv?path={{card.name}}">View</button><br>
+
+    <a href="/example.pdf" target="_blank" download={{card.name}}>Download</a>
+
+</form>
 </div>
+ <!--
+web/viewer.html?file=%2Fpdf/L1(Intro).pdf -->
