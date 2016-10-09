@@ -87,53 +87,59 @@
             <md-input-container flex="50" flex-gt-xs="30">
               <lable> First Prefernce </label>
                 <md-select ng-model="formData.company1" data-md-container-class="selectdemoSelectHeader" required>
-                    <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
+                  <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container flex="50" flex-gt-xs="10">
             </md-input-container>
             <md-input-container flex="40" flex-gt-xs="30">
               <lable ng-show="selectedObject.catv">Position</label>
-              <md-select ng-show="selectedObject.catv" ng-model="formData.position1"  data-md-container-class="selectdemoSelectHeader">
+                <md-select ng-show="selectedObject.catv" ng-model="formData.position1" data-md-container-class="selectdemoSelectHeader">
                   <md-option ng-repeat="x in selectedObject.cat" value="{{x}}">{{x}}</md-option>
-              </md-select>
+                </md-select>
             </md-input-container>
             <md-input-container flex="40" flex-gt-xs="10">
             </md-input-container>
-            <md-input-container flex="50" flex-gt-xs="10">
-              <button class="md-accent md-raised md-hue-1 md-button md-default-theme md-ink-ripple">Select your CV</button>
+            <md-input-container flex="100" flex-gt-xs="10">
+              <input class="md-raised md-warn" type="file" ngf-select ng-model="formData.picFile" name="file" accept="document/pdf" ngf-max-size="6MB" ngf-pattern="'.pdf'" required ngf-model-invalid="errorFile">
+              <i ng-show="Info2.file.$error.required">*required</i><br>
+              <i ng-show="Info2.file.$error.maxSize">File too large
+          {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+              <img ng-show="Info2.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+              <br>
+              <!-- <button class="md-accent md-raised md-hue-1 md-button md-default-theme md-ink-ripple">Select your CV</button> -->
             </md-input-container>
           </div>
           <div layout="column" layout-gt-xs="row" flex>
             <md-input-container flex="50" flex-gt-xs="30">
               <lable ng-show="secondpre"> Second Prefernce </label>
                 <md-select ng-show="secondpre" ng-model="formData.company2" data-md-container-class="selectdemoSelectHeader" required>
-                    <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
+                  <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container flex="50" flex-gt-xs="10">
             </md-input-container>
             <md-input-container flex="40" flex-gt-xs="30">
               <lable ng-show="selectedObject1.catv">Position</label>
-              <md-select ng-show="selectedObject1.catv" ng-model="formData.position2"  data-md-container-class="selectdemoSelectHeader">
+                <md-select ng-show="selectedObject1.catv" ng-model="formData.position2" data-md-container-class="selectdemoSelectHeader">
                   <md-option ng-repeat="x in selectedObject1.cat" value="{{x}}">{{x}}</md-option>
-              </md-select>
+                </md-select>
             </md-input-container>
           </div>
           <div layout="column" layout-gt-xs="row" flex>
             <md-input-container flex="50" flex-gt-xs="30">
               <lable ng-show="thirdpre"> Third Prefernce </label>
                 <md-select ng-show="thirdpre" ng-model="formData.company3" data-md-container-class="selectdemoSelectHeader" required>
-                    <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
+                  <md-option ng-repeat="c in companies" value="{{c.name}}">{{c.name}}</md-option>
                 </md-select>
             </md-input-container>
             <md-input-container flex="50" flex-gt-xs="10">
             </md-input-container>
             <md-input-container flex="40" flex-gt-xs="30">
               <lable ng-show="selectedObject2.catv">Position</label>
-              <md-select ng-show="selectedObject2.catv" ng-model="formData.position3"  data-md-container-class="selectdemoSelectHeader">
+                <md-select ng-show="selectedObject2.catv" ng-model="formData.position3" data-md-container-class="selectdemoSelectHeader">
                   <md-option ng-repeat="x in selectedObject2.cat" value="{{x}}">{{x}}</md-option>
-              </md-select>
+                </md-select>
             </md-input-container>
           </div>
         </form>
@@ -158,4 +164,3 @@
 
 
 </ms-form-wizard>
-
