@@ -17,6 +17,7 @@ module.exports = function(app, passport) {
 }));
 
 app.post('/userregister', passport.authenticate('local-signup', {
+  
       successRedirect : '/login', // redirect to the secure profile section
       failureRedirect : '/register', // redirect back to the signup page if there is an error
       failureFlash : true // allow flash messages
