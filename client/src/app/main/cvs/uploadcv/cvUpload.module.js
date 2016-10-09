@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.pages.cvUpload', [])
+        .module('app.pages.cvUpload')
         .config(config);
 
     /** @ngInject */

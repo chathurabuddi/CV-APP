@@ -20,12 +20,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/upload', require('./controllers/cvupload.controller'));
-app.use('/companylist', require('./controllers/companylist.controller'));
-//get cv list for givin company
-app.use('/getCvList', require('./controllers/companycvlist.controller'));
-// get the givin cv and update the givin cv
-app.use('/manageCv', require('./controllers/manageCV.controller'));
+
 
 
 
@@ -36,7 +31,7 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
 
-require('./controllers/userauth.controller')(app, passport);
+
 
 
  // read cookies (needed for auth)
@@ -47,6 +42,15 @@ app.use(bodyParser.json());
 app.use(function(req, res) {
     res.sendfile(path.resolve('../client/dist/index.html'));
 });
+
+app.use('/upload', require('./controllers/cvupload.controller'));
+app.use('/companylist', require('./controllers/companylist.controller'));
+//get cv list for givin company
+app.use('/getCvList', require('./controllers/companycvlist.controller'));
+// get the givin cv and update the givin cv
+app.use('/manageCv', require('./controllers/manageCV.controller'));
+
+require('./controllers/userauth.controller')(app, passport);
 
 // app.use(session({
 //   secret: 'appsecret',

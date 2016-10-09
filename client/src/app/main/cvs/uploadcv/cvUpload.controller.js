@@ -2,11 +2,11 @@
   'use strict';
 
   angular
-    .module('app.pages.cvUpload')
+    .module('app.pages.cvUpload',['ngFileUpload'])
     .controller('CVUpload', CVUpload);
 
   /** @ngInject */
-  function CVUpload($scope, $element) {
+  function CVUpload($scope, $element,Upload, $timeout,$window,$http) {
     $scope.companies = [{
       name: 'MIT',
       catv: true,
@@ -79,9 +79,35 @@
       console.log($scope.formData);
     }
 
+    $scope.uploadPic = function(file) {
+      console.log(file);
+      file.upload = Upload.upload({
+        url: 'http://localhost:3000/upload',
+        data: {
+          file: file
+        },
+      });
+
+      file.upload.then(function(response) {
+        $timeout(function() {
+          file.result = response.data;
+        });
+        if (response.data.error_code === 0) { //validate success
+          $window.alert('Success ' + response.config.data.file.name + 'uploaded. Response: ');
+        } else {
+          $window.alert('an error occured');
+        }
+      }, function(response) {
+        if (response.status > 0)
+          $scope.errorMsg = response.status + ': ' + response.data;
+        $window.alert('Error status: ' + resp.status);
+      }, function(evt) {
+        // Math.min is to fix IE which reports 200% sometimes
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
+    }
+
   }
 
 
 })();
-
-
