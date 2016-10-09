@@ -26,20 +26,20 @@
         msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         // Navigation
-        msNavigationServiceProvider.saveItem('fuse', {
-            title : 'viewCv',
-            group : true,
-            weight: 1
-        });
-
-        msNavigationServiceProvider.saveItem('fuse.viewCv', {
-            title    : 'Sample',
-            icon     : 'icon-tile-four',
-            state    : 'app.viewCv',
-            /*stateParams: {
-                'param1': 'page'
-             },*/
-            weight   : 1
-        });
+        // msNavigationServiceProvider.saveItem('fuse', {
+        //     title : 'viewCv',
+        //     group : true,
+        //     weight: 1
+        // });
+        // 
+        // msNavigationServiceProvider.saveItem('fuse.viewCv', {
+        //     title    : 'Sample',
+        //     icon     : 'icon-tile-four',
+        //     state    : 'app.viewCv',
+        //     /*stateParams: {
+        //         'param1': 'page'
+        //      },*/
+        //     weight   : 1
+        // });
     }
 })();

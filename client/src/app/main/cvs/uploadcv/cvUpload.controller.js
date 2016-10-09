@@ -7,7 +7,7 @@
 
   /** @ngInject */
 
-  function CVUpload($scope, $element,$http) {
+  function CVUpload($scope,Upload, $element,$http) {
     $http.get('/companylist').success(function(response) {
         $scope.companies = response;
     });
@@ -62,20 +62,37 @@
     });
 
 
-    $scope.sendForm = function(file) {
+    // $scope.sendForm = function(file) {
+    //
+    //   //console.log($scope.formData.selected.length);
+    //   console.log($scope.formData.picFile);
+    //   console.log($scope.formData);
+    //   console.log(file);
+    //
+    // }
 
-      //console.log($scope.formData.selected.length);
+    $scope.sendForm = function(file) {
+      console.log("--->start");
+      console.log($scope.formData.picFile);
       console.log($scope.formData);
       console.log(file);
-      console.log($scope.picFile);
-    }
+      console.log("--->end");
 
-    $scope.uploadPic = function(file) {
-      console.log(file);
       file.upload = Upload.upload({
         url: 'http://localhost:3000/upload',
         data: {
-          file: file
+          file: file,
+          fname:$scope.formData.firstname,
+          lname:$scope.formData.lastname,
+          email:$scope.formData.email,
+          mobilenumber:$scope.formData.mobilenumber,
+          telnumber:$scope.formData.telnumber,
+          company1:$scope.formData.company1,
+          company2:$scope.formData.company2,
+          company3:$scope.formData.company3,
+          position1:$scope.formData.position1,
+          position2:$scope.formData.position2,
+          position3:$scope.formData.position3
         },
       });
 

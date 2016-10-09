@@ -1,20 +1,23 @@
 <div class="template-5 p-16" layout="row" layout-align="space-between start">
     <div class="info">
         <div class="title secondary-text">
-            {{card.name}}
+            {{card.fname}}{{card.lname}}
         </div>
 
-        <div class="event h2">
+        <div class="event h3">
             {{card.email}}
+        </div>
+        <div class="event h3">
+            {{card.mobilenumber}}
         </div>
     </div>
 
     <div class="media ml-16">
-        <img class="image" ng-src="{{card.img}}" alt="" ng-show="card.img">
+        <img class="image" ng-src="assets/images/avatars/profile.jpg" alt="" ng-show="card.img">
     </div>
-    <button type="button"> <a href="http://localhost:3000/viewcv?path={{card.name}}">View</button><br>
+    <button type="button"> <a href="http://localhost:8080/viewcv?path={{card.cvpath}}">View</button><br>
 
-    <a href="/example.pdf" target="_blank" download={{card.name}}>Download</a>
+    <a href="/{{card.cvpath}}" target="_blank" download={{card.name}}>Download</a>
 
 </form>
 </div>
