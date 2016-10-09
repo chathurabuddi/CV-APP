@@ -38,41 +38,14 @@ app.get('/register2', function(req, res) {
     res.send({ message: req.flash('signupMessage')});
 });
 
-// passport js related
-app.use(cookieParser());
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash());
 
+require('./controllers/userauth.controller')(app, passport);
 
 app.use(express.static('../client/dist'));
 // Use res.sendfile, as it streams instead of reading the file into memory.
 app.use(function(req, res) {
     res.sendfile(path.resolve('../client/dist/index.html'));
 });
-
-app.use('/upload', require('./controllers/cvupload.controller'));
-app.use('/companylist', require('./controllers/companylist.controller'));
-//get cv list for givin company
-app.use('/getCvList', require('./controllers/companycvlist.controller'));
-// get the givin cv and update the givin cv
-app.use('/manageCv', require('./controllers/manageCV.controller'));
-
-require('./controllers/userauth.controller')(app, passport);
-
-// app.use(session({
-//   secret: 'appsecret',
-//   resave: false,
-//   saveUninitialized: true,
-//   cookie: {
-//     secure: true,
-//     maxAge: new Date(Date.now() + 3600000)
-//   }
-// }));
-
-
-
 
 app.listen('3000', function(){
     console.log('running on 3000...');
