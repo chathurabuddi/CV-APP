@@ -12,6 +12,8 @@ var config = require('config.json');
 var db = require('./db').db;
 db.bind('cvData');
 
+var newname;
+var newRecord = {};
 
 //multers disk storage settings
 var storage = multer.diskStorage({
@@ -22,8 +24,9 @@ var storage = multer.diskStorage({
         console.log(file.fieldname);
         var datetimestamp = Date.now();
         newname = file.originalname.split('.')[0] + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
+
         cb(null, newname);
-        console.log("creation" + newname);
+        console.log(newname);
     }
 });
 
@@ -38,50 +41,56 @@ router.get('/lol', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-    newname = "errpr_pdf.pdf";
-    newRecord = {};
-    var busboy = new Busboy({
-            headers: req.headers
-        }),
-        createCV = function(newRecord) {
-            console.log("---------->>>>>>>>>>---------" + newRecord.cvpath);
-            db.cvData.insert(newRecord, function(err, doc) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log("Complete" + doc);
-                }
-            });
-        };
-
-    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-        newRecord[fieldname] = inspect(val);
-        console.log('Field [' + fieldname + ']: value: ' + inspect(val));
-    });
-    busboy.on('finish', function() {
-        console.log('Done parsing form!');
-        //newRecord.cvpath = newname; // add cv name to the database
-        //console.log(newRecord);
-        // after parsing finished save it to database
-    });
-
-    req.pipe(busboy);
-
     upload(req, res, function(err) {
+      console.log("here we are");
         if (err) {
+          console.log("errr" + err);
             return res.json({
                 error_code: 1,
                 err_desc: err
             });
             // return; // if error occor exit form here
         }
-        newRecord.cvpath = newname; //insert cv name to the data base
-        createCV(newRecord);
-        return res.json({
-            error_code: 0,
-            err_desc: null
-        });
     });
+
+    // if file upload complete
+    var busboy = new Busboy({
+        headers: req.headers
+    });
+    newRecord = {};
+    busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
+
+        newRecord[fieldname] = inspect(val);
+        console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+        console.log("--------->");
+    });
+    busboy.on('finish', function() {
+        console.log('Done parsing form!');
+        newRecord.cvpath = newname; // add cv name to the database
+        console.log(newRecord);
+        createCV(newRecord); // after parsing finished save it to database
+    });
+    req.pipe(busboy);
+
+
+    function createCV(newRecord) {
+        db.cvData.insert(newRecord, function(err, doc) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log("Complete" + doc);
+            }
+        });
+    }
+
+
+    // after complete send respond to front end
+    return res.json({
+        error_code: 0,
+        err_desc: null
+    });
+
+
 });
 
 

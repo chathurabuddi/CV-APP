@@ -7,15 +7,15 @@
 
   /** @ngInject */
 
-  function CVUpload($scope, Upload, $element, $http) {
+  function CVUpload($scope, Upload, $element, $timeout, $window, $http) {
     $http.get('/companylist').success(function(response) {
       $scope.companies = response;
     });
 
 
-    $scope.searchTerm;
+    $scope.searchTerm = null;
     $scope.clearSearchTerm = function() {
-      $scope.searchTerm = '';
+
     };
     // The md-select directive eats keydown events for some quick select
     // logic. Since we have a search input here, we don't need that logic.

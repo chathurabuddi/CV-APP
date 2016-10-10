@@ -14,11 +14,11 @@
     <div class="media ml-16">
         <img class="image" ng-src="assets/images/avatars/profile.jpg" alt="" ng-show="card.img">
     </div>
-    <span> 
+    <span>
 	<a href="viewcv?path={{card.cvpath}}" class="md-default-theme md-button md-raised md-accent">
 		<md-icon ng-if="shortcut.icon" md-font-icon="icon-tile-four" class="icon s24 md-default-theme md-font material-icons icon-eye" aria-hidden="true"></md-icon>
 	</a>
-	<a href="/{{card.cvpath}}" target="_blank" download={{card.name}}>
+	<a href="/{{card.cvpath}}" target="_blank" download={{card.fname}}>
 		<md-icon ng-if="shortcut.icon" md-font-icon="icon-tile-four" class="icon s24 md-default-theme md-font material-icons icon-download" aria-hidden="true"></md-icon>
 	</a>
     </span>
