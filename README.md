@@ -27,7 +27,7 @@ Clone project:
 
 ## Setup Development Environment in Local Machine
 ###1 Angular Client (Frontend)
-For begin run the following commands in your terminal:
+To begin run the following commands in your terminal:
 
 Install dependencies:
 
