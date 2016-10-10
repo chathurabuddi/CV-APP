@@ -10,23 +10,31 @@ mongo.connect(configDB.url);
 
 module.exports = function(app, passport) {
 
-  app.post('/userlogin', passport.authenticate('local-login', {
-  successRedirect : '/cvs', // redirect to the secure profile section
-  failureRedirect : '/login', // redirect back to the signup page if there is an error
-  failureFlash : true // allow flash messages
-}));
+    app.post('/userlogin', passport.authenticate('local-login', {
+        successRedirect: '/cvupload', // redirect to the secure profile section
+        failureRedirect: '/login', // redirect back to the signup page if there is an error
+        failureFlash: true // allow flash messages
+    }));
 
-app.post('/userregister', passport.authenticate('local-signup', {
-  
-      successRedirect : '/login', // redirect to the secure profile section
-      failureRedirect : '/register', // redirect back to the signup page if there is an error
-      failureFlash : true // allow flash messages
-  }));
+    app.post('/userregister', passport.authenticate('local-signup', {
 
-  app.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
+        successRedirect: '/login', // redirect to the secure profile section
+        failureRedirect: '/register', // redirect back to the signup page if there is an error
+        failureFlash: true // allow flash messages
+    }));
+
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
+
+    app.get('/currentuser', function(req,res){
+
+      res.json(req.user);
+      //console.log(user.local.usertype);
+      //console.log('users1');
+      //return users1.local.usertype;
+    });
 
 
 };

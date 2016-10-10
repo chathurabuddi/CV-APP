@@ -10,7 +10,6 @@
 
             // Core
             'app.core',
-
             // Navigation
             'app.navigation',
 
@@ -21,7 +20,9 @@
             'app.quick-panel',
 
             // pages
-            'app.pages'
+            'app.pages',
+
+
 
         ]);
 })();

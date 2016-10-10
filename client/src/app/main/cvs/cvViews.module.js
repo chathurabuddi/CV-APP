@@ -36,6 +36,9 @@
             title    : 'CV\'s',
             icon     : 'icon-tile-four',
             state    : 'app.cvview',
+            hidden: function() {
+              return 1; // must be a boolean value
+            },
             /*stateParams: {
                 'param1': 'page'
              },*/
