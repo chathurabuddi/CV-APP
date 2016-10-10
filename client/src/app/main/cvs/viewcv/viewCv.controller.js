@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.pages.viewCv')
+        .module('app.pages.viewCv',[])
         .controller('viewCv', viewCv);
 
     /** @ngInject */
