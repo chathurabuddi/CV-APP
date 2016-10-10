@@ -3,7 +3,6 @@
         <div class="title secondary-text">
             {{card.fname}}{{card.lname}}
         </div>
-
         <div class="event h3">
             {{card.email}}
         </div>
@@ -15,11 +14,12 @@
     <div class="media ml-16">
         <img class="image" ng-src="assets/images/avatars/profile.jpg" alt="" ng-show="card.img">
     </div>
-    <button type="button"> <a href="http://104.131.11.107/viewcv?path={{card.cvpath}}">View</button><br>
-
-    <a href="/{{card.cvpath}}" target="_blank" download={{card.name}}>Download</a>
-
-</form>
+    <span> 
+	<a href="viewcv?path={{card.cvpath}}" class="md-default-theme md-button md-raised md-accent">
+		<md-icon ng-if="shortcut.icon" md-font-icon="icon-tile-four" class="icon s24 md-default-theme md-font material-icons icon-eye" aria-hidden="true"></md-icon>
+	</a>
+	<a href="/{{card.cvpath}}" target="_blank" download={{card.name}}>
+		<md-icon ng-if="shortcut.icon" md-font-icon="icon-tile-four" class="icon s24 md-default-theme md-font material-icons icon-download" aria-hidden="true"></md-icon>
+	</a>
+    </span>
 </div>
- <!--
-web/viewer.html?file=%2Fpdf/L1(Intro).pdf -->
