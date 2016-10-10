@@ -3,12 +3,6 @@ var router = express.Router();
 var request = require('request');
 var config = require('config.json');
 
-
-
-// var mongo = require('mongoskin');
-// var db = mongo.db("mongodb://localhost:27017/mycvapp", {
-//     native_parser: true
-// });
 var db = require('./db').db;
 
 db.bind('cvData');
@@ -18,7 +12,7 @@ var commpaylistArray = [];
 router.post('/getCv', function(req, res) {
     commpaylistArray = []; //remove elemet in the list for every request
     db.collection('cvData').find({
-        cvpath: "UCSC_IEEEXtreme_Proposal-1475732266667.pdf"
+        fname: "'ado ado'"
     }, function(err, result) {
         result.each(function(err, data) {
             if (data !== null) {

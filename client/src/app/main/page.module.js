@@ -11,6 +11,7 @@
             'app.pages.cvView',
             'app.pages.login',
             'app.pages.register',
-            'app.pages.viewCv'
+            'app.pages.viewCv',
+            'app.pages.userMain'
         ]);
 })();

@@ -2,20 +2,20 @@
   'use strict';
 
   angular
-    .module('app.pages.cvUpload',['ngFileUpload'])
+    .module('app.pages.cvUpload', ['ngFileUpload'])
     .controller('CVUpload', CVUpload);
 
   /** @ngInject */
 
-  function CVUpload($scope,Upload, $element,$http) {
+  function CVUpload($scope, Upload, $element, $timeout, $window, $http) {
     $http.get('/companylist').success(function(response) {
-        $scope.companies = response;
+      $scope.companies = response;
     });
 
 
-    $scope.searchTerm;
+    $scope.searchTerm = null;
     $scope.clearSearchTerm = function() {
-      $scope.searchTerm = '';
+
     };
     // The md-select directive eats keydown events for some quick select
     // logic. Since we have a search input here, we don't need that logic.
@@ -29,8 +29,8 @@
       for (var i = 0; i < $scope.companies.length; i++) {
         if ($scope.companies[i].name == $scope.formData.company1) {
           $scope.selectedObject = $scope.companies[i];
-          if($scope.selectedObject.catv==false){
-            $scope.formData.position1="";
+          if ($scope.selectedObject.catv == false) {
+            $scope.formData.position1 = "";
           }
           $scope.secondpre = true;
         }
@@ -41,10 +41,10 @@
       for (var i = 0; i < $scope.companies.length; i++) {
         if ($scope.companies[i].name == $scope.formData.company2) {
           $scope.selectedObject1 = $scope.companies[i];
-          if($scope.selectedObject1.catv==false){
-            $scope.formData.position2="";
+          if ($scope.selectedObject1.catv == false) {
+            $scope.formData.position2 = "";
           }
-          $scope.thirdpre=true;
+          $scope.thirdpre = true;
 
         }
       }
@@ -53,8 +53,8 @@
       for (var i = 0; i < $scope.companies.length; i++) {
         if ($scope.companies[i].name == $scope.formData.company3) {
           $scope.selectedObject2 = $scope.companies[i];
-          if($scope.selectedObject2.catv==false){
-            $scope.formData.position3="";
+          if ($scope.selectedObject2.catv == false) {
+            $scope.formData.position3 = "";
           }
 
         }
@@ -79,20 +79,21 @@
       console.log("--->end");
 
       file.upload = Upload.upload({
-        url: ' http://104.131.11.107:8080/upload',
+
+        url: ' /upload',
         data: {
           file: file,
-          fname:$scope.formData.firstname,
-          lname:$scope.formData.lastname,
-          email:$scope.formData.email,
-          mobilenumber:$scope.formData.mobilenumber,
-          telnumber:$scope.formData.telnumber,
-          company1:$scope.formData.company1,
-          company2:$scope.formData.company2,
-          company3:$scope.formData.company3,
-          position1:$scope.formData.position1,
-          position2:$scope.formData.position2,
-          position3:$scope.formData.position3
+          fname: $scope.formData.firstname,
+          lname: $scope.formData.lastname,
+          email: $scope.formData.email,
+          mobilenumber: $scope.formData.mobilenumber,
+          telnumber: $scope.formData.telnumber,
+          company1: $scope.formData.company1,
+          company2: $scope.formData.company2,
+          company3: $scope.formData.company3,
+          position1: $scope.formData.position1,
+          position2: $scope.formData.position2,
+          position3: $scope.formData.position3
         },
       });
 
