@@ -7,12 +7,12 @@ var db = require('./db').db;
 
 db.bind('cvData');
 
-var commpaylistArray = [];
+// var commpaylistArray = [];
 
 router.post('/getCv', function(req, res) {
-    commpaylistArray = []; //remove elemet in the list for every request
+    var commpaylistArray = []; //remove elemet in the list for every request
     db.collection('cvData').find({
-        fname: "'ado ado'"
+        userid: req.body.id
     }, function(err, result) {
         result.each(function(err, data) {
             if (data !== null) {
