@@ -55,7 +55,7 @@ router.post('/', function(req, res) {
         };
 
     busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated) {
-        newRecord[fieldname] = inspect(val);
+        newRecord[fieldname] = inspect(val).replace(/'/g, "");
         console.log('Field [' + fieldname + ']: value: ' + inspect(val));
     });
     busboy.on('finish', function() {
