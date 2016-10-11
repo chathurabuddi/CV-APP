@@ -9,7 +9,7 @@
     {{fname}}{{lname}}
 </div>
 <div class="event h3">
-    {{company1}}
+    {{lname}}
 </div>
 <div class="event h3">
     {{company2}}
@@ -21,4 +21,4 @@
     {{cvList}}
 </div>
 
-<iframe id="fred"  title="PDF in an i-Frame" ng-src="{{cvpath}}" frameborder="1" scrolling="auto" height="100%" width="100%" ></iframe>
+<iframe id="fred"  title="PDF in an i-Frame" ng-src="{{cvpath}}" ng-if="cvpathShow" frameborder="1" scrolling="auto" height="100%" width="100%" ></iframe>
