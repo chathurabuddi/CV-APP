@@ -7,13 +7,12 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($http,$rootScope,$location, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService)
+    function ToolbarController($http,$scope,$rootScope,$location, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService)
     {
         var vm = this;
-
         $http.get('/currentuser').then(function(result){
-          $scope.currentU = result.data;
-          console.log($scope.currentU);
+          $scope.fname = result.data.fname;
+          console.log(result);
         });
         // Data
         $rootScope.global = {
