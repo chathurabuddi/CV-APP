@@ -1,23 +1,34 @@
 <div id="register" class="flex-scrollable" layout="column" ms-scroll>
     <div id="register-form-wrapper" layout="column" layout-align="center center">
         <div id="register-form" class="md-whiteframe-8dp">
-            <div class="logo md-accent-bg">
-                <span>F</span>
+            <div class="logo">
+                <img src="assets/images/UCSC_logo.jpg">
             </div>
 
             <div class="title">Create an account</div>
 
             <form name="registerForm" action="/userregister" novalidate method="post">
-                <!-- <md-input-container class="md-block" md-no-float>
-                    <input name="username" ng-model="vm.form.username" placeholder="Name"
+                <md-input-container class="md-block" md-no-float>
+                    <input name="firstname" ng-model="vm.form.firstname" placeholder="Firstname"
 
                            required>
-                    <div ng-messages="registerForm.username.$error" role="alert">
+                    <div ng-messages="registerForm.firstname.$error" role="alert">
                         <div ng-message="required">
-                            <span >Username field is required</span>
+                            <span >Firstname field is required</span>
                         </div>
                     </div>
-                </md-input-container> -->
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input name="lastname" ng-model="vm.form.lastname" placeholder="Lastname"
+
+                           required>
+                    <div ng-messages="registerForm.lastname.$error" role="alert">
+                        <div ng-message="required">
+                            <span >Lastname field is required</span>
+                        </div>
+                    </div>
+                </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
                     <input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
@@ -52,13 +63,13 @@
                     </div>
                 </md-input-container> -->
 
-                <div class="terms" layout="row" layout-align="center center">
+                <!-- <div class="terms" layout="row" layout-align="center center">
                     <md-checkbox name="terms" ng-model="data.cb1" aria-label="I read and accept" required></md-checkbox>
                     <div layout="row" layout-sm="column" layout-align="start center">
                         <span >I read and accept</span>
                         <a href="#" class="md-accent-color" >terms and conditions</a>
                     </div>
-                </div>
+                </div> -->
 
                 <md-button type="submit" class="md-raised md-accent submit-button" aria-label="CREATE MY ACCOUNT"
                            ng-disabled="registerForm.$invalid || registerForm.$pristine"
