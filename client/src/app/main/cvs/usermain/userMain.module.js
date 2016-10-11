@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.sample', [])
+        .module('app.pages.userMain', [])
         .config(config);
 
     /** @ngInject */
@@ -11,43 +11,34 @@
     {
         // State
         $stateProvider
-            .state('app.sample', {
-                url    : '/sample',
+            .state('app.userMain', {
+                url    : '/usermain',
                 views  : {
                     'content@app': {
-                        templateUrl: 'app/main/sample/sample.html',
-                        controller : 'SampleController'
+                        templateUrl: 'app/main/cvs/usermain/userMain.html',
+                        controller : 'userMain'
                     }
                 },
-                resolve: {
-                    SampleData: function (msApi)
-                    {
-                        return msApi.resolve('sample@get');
-                    }
-                }
             });
 
-        // Translation
-        $translatePartialLoaderProvider.addPart('app/main/sample');
 
         // Api
         msApiProvider.register('sample', ['app/data/sample/sample.json']);
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
-            title : 'SAMPLE',
+            title : 'userMain',
             group : true,
             weight: 1
         });
 
-        msNavigationServiceProvider.saveItem('fuse.sample', {
-            title    : 'test',
+        msNavigationServiceProvider.saveItem('fuse.userMain', {
+            title    : 'Home',
             icon     : 'icon-tile-four',
-            state    : 'app.test',
+            state    : 'app.userMain',
             /*stateParams: {
                 'param1': 'page'
              },*/
-            translate: 'SAMPLE.SAMPLE_NAV',
             weight   : 1
         });
     }

@@ -3,11 +3,11 @@
     'use strict';
 
     angular
-        .module('app.sample')
-        .controller('SampleController', SampleController);
+        .module('app.test')
+        .controller('test', test);
 
     /** @ngInject */
-    function SampleController(SampleData,$scope,$http)
+    function test(SampleData,$scope,$http)
     {
               // Data
         $scope.helloText = SampleData.data.helloText;

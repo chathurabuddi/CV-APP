@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.sample', [])
+        .module('app.test', [])
         .config(config);
 
     /** @ngInject */
@@ -11,12 +11,12 @@
     {
         // State
         $stateProvider
-            .state('app.sample', {
-                url    : '/sample',
+            .state('app.test', {
+                url    : '/test',
                 views  : {
                     'content@app': {
-                        templateUrl: 'app/main/sample/sample.html',
-                        controller : 'SampleController'
+                        templateUrl: 'app/main/test/test.html',
+                        controller : 'test'
                     }
                 },
                 resolve: {
@@ -35,19 +35,18 @@
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
-            title : 'SAMPLE',
+            title : 'test',
             group : true,
             weight: 1
         });
 
-        msNavigationServiceProvider.saveItem('fuse.sample', {
+        msNavigationServiceProvider.saveItem('fuse.test', {
             title    : 'test',
             icon     : 'icon-tile-four',
-            state    : 'app.test',
+            state    : 'app.sample',
             /*stateParams: {
                 'param1': 'page'
              },*/
-            translate: 'SAMPLE.SAMPLE_NAV',
             weight   : 1
         });
     }

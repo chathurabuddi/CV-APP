@@ -11,7 +11,7 @@
     {
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/cvs');
+        $urlRouterProvider.otherwise('/login');
 
         /**
          * Layout Style Switcher
@@ -75,15 +75,15 @@
                 abstract: true,
                 views   : {
                     'main@'         : {
-                        templateUrl: layouts[layoutStyle].main,
+                        templateUrl: 'app/core/layouts/vertical-navigation.html',
                         controller : 'MainController as vm'
                     },
                     'toolbar@app'   : {
-                        templateUrl: layouts[layoutStyle].toolbar,
+                        templateUrl: 'app/toolbar/layouts/vertical-navigation/toolbar.html',
                         controller : 'ToolbarController as vm'
                     },
                     'navigation@app': {
-                        templateUrl: layouts[layoutStyle].navigation,
+                        templateUrl: 'app/navigation/layouts/vertical-navigation/navigation.html',
                         controller : 'NavigationController as vm'
                     },
                     'quickPanel@app': {

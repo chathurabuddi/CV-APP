@@ -7,10 +7,14 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService)
+    function ToolbarController($http,$rootScope,$location, $q, $state, $timeout, $mdSidenav, $translate, $mdToast, msNavigationService)
     {
         var vm = this;
 
+        $http.get('/currentuser').then(function(result){
+          $scope.currentU = result.data;
+          console.log($scope.currentU);
+        });
         // Data
         $rootScope.global = {
             search: ''
@@ -114,9 +118,11 @@
         /**
          * Logout Function
          */
-        function logout()
+        function logout(path)
         {
             // Do logout here..
+              $location.path( path );
+
         }
 
         /**
