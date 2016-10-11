@@ -27,7 +27,7 @@
 
         // Navigation
         msNavigationServiceProvider.saveItem('fuse', {
-            title : 'userMain',
+            title : 'Home',
             group : true,
             weight: 1
         });
