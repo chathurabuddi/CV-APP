@@ -12,6 +12,10 @@
       $scope.companies = response;
     });
 
+    $http.get('/currentuser').then(function(result){
+          $scope.userid = result.data._id;
+          console.log($scope.userid);
+    });
 
     $scope.searchTerm = null;
     $scope.clearSearchTerm = function() {
@@ -75,7 +79,7 @@
       console.log("--->start");
       console.log($scope.formData.picFile);
       console.log($scope.formData);
-      console.log(file);
+      console.log("user id" + $scope.userid);
       console.log("--->end");
 
       file.upload = Upload.upload({
@@ -93,7 +97,8 @@
           company3: $scope.formData.company3,
           position1: $scope.formData.position1,
           position2: $scope.formData.position2,
-          position3: $scope.formData.position3
+          position3: $scope.formData.position3,
+          userid:$scope.userid
         },
       });
 
