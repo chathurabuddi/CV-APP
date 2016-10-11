@@ -24,7 +24,7 @@
           $scope.lname = response.lname;
           $scope.company1 = response.company1;
           $scope.company2 = response.company2;
-          $scope.company3 = response.fname;
+          $scope.company3 = response.company3;
           $scope.company4 = response.company4;
           $scope.company5 = response.company5;
           $scope.company6 = response.company6;

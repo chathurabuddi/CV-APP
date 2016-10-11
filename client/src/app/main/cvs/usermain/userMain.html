@@ -1,24 +1,112 @@
-<h2>
-{{default}}
-</h2>
 
-<div class="title secondary-text">
-    {{fname}}{{lname}}
-</div>
-<div class="event h2">
-    {{fname}}{{lname}}
-</div>
-<div class="event h3">
-    {{lname}}
-</div>
-<div class="event h3">
-    {{company2}}
-</div>
-<div class="event h3">
-    {{company3}}
-</div>
-<div class="event h3">
-    {{cvList}}
-</div>
+    <div class="md-title pb-5">{{default}}</div>
+<div layout="row" ng-if="default == ''">
+  <div flex="30">
+    <span class="md-title">Companies Applied</span>
 
-<iframe id="fred"  title="PDF in an i-Frame" ng-src="{{cvpath}}" ng-if="cvpathShow" frameborder="1" scrolling="auto" height="100%" width="100%" ></iframe>
+  <!-- <div class="title secondary-text">
+      {{fname}}{{lname}}
+    </div>
+    <div class="event h2">
+      {{fname}}{{lname}}
+    </div> -->
+
+    <ms-widget class="h-80" layout="column" flex="100" ng-if="company1 != null">
+
+      <!-- Front -->
+      <ms-widget-front class="p-10 white-bg" layout="row" flex>
+        <div class="pt-5 pb-5" layout="column" layout-align="center center" flex>
+          <div class="md-title pb-5">{{company1}}</div>
+          <div class="font-weight-500 secondary-text">{{position1}}</div>
+        </div>
+      </ms-widget-front>
+      <!-- / Front -->
+
+    </ms-widget>
+
+    <ms-widget class="h-80" layout="column" flex="100" ng-if="company2 != null">
+
+      <!-- Front -->
+      <ms-widget-front class="p-10 white-bg" layout="row" flex>
+        <div class="pt-5 pb-5" layout="column" layout-align="center center" flex>
+          <div class="md-title pb-5">{{company2}}</div>
+          <div class="font-weight-500 secondary-text">{{position2}}</div>
+        </div>
+      </ms-widget-front>
+      <!-- / Front -->
+
+    </ms-widget>
+
+    <ms-widget class="h-80" layout="column" flex="100" ng-if="company3 != null">
+
+      <!-- Front -->
+      <ms-widget-front class="p-10 white-bg" layout="row" flex>
+        <div class="pt-5 pb-5" layout="column" layout-align="center center" flex>
+          <div class="md-title pb-5">{{company3}}</div>
+          <div class="font-weight-500 secondary-text">{{position3}}</div>
+        </div>
+      </ms-widget-front>
+      <!-- / Front -->
+
+    </ms-widget>
+
+    <ms-widget class="h-80" layout="column" flex="100" ng-if="company4 != null">
+
+      <!-- Front -->
+      <ms-widget-front class="p-10 white-bg" layout="row" flex>
+        <div class="pt-5 pb-5" layout="column" layout-align="center center" flex>
+          <div class="md-title pb-5">{{company4}}</div>
+          <div class="font-weight-500 secondary-text">{{position4}}</div>
+        </div>
+      </ms-widget-front>
+      <!-- / Front -->
+
+    </ms-widget>
+
+    <ms-widget class="h-80" layout="column" flex="100" ng-if="company5 != null">
+
+      <!-- Front -->
+      <ms-widget-front class="p-10 white-bg" layout="row" flex>
+        <div class="pt-5 pb-5" layout="column" layout-align="center center" flex>
+          <div class="md-title pb-5">{{company5}}</div>
+          <div class="font-weight-500 secondary-text">{{position5}}</div>
+        </div>
+      </ms-widget-front>
+      <!-- / Front -->
+
+    </ms-widget>
+
+    <ms-widget class="h-80" layout="column" flex="100" ng-if="company6 != null">
+
+      <!-- Front -->
+      <ms-widget-front class="p-10 white-bg" layout="row" flex>
+        <div class="pt-5 pb-5" layout="column" layout-align="center center" flex>
+          <div class="md-title pb-5">{{company6}}</div>
+          <div class="font-weight-500 secondary-text">{{position6}}</div>
+        </div>
+      </ms-widget-front>
+      <!-- / Front -->
+
+    </ms-widget>
+
+
+
+    <!-- <div class="event h3">
+      {{company1}}
+    </div>
+    <div class="event h3">
+      {{company2}}
+    </div>
+    <div class="event h3">
+      {{company3}}
+    </div>
+    <div class="event h3">
+      {{cvList}}
+    </div> -->
+
+  </div>
+  <div flex="70" style="height: 85vh;">
+    <span class="md-title">Your CV</span>
+    <iframe id="fred" title="PDF in an i-Frame" ng-src="{{cvpath}}" frameborder="1" scrolling="auto" height="100%" width="100%"></iframe>
+  </div>
+</div>
