@@ -12,6 +12,25 @@
       $scope.companies = response;
     });
 
+    $scope.uploadStatus=false;
+
+    $scope.companies = [{
+      name: 'MIT',
+      catv: true,
+      cat: ['SE', 'BA', 'QA','PM'],
+
+    }, {
+      name: '99X',
+      catv: true,
+      cat: ['SE', 'BA', 'QA'],
+
+    }, {
+      name: 'Caklabs',
+      catv: false,
+      cat: [],
+
+    }];
+
     $http.get('/currentuser').then(function(result){
           $scope.userid = result.data._id;
           console.log($scope.userid);
@@ -60,7 +79,39 @@
           if ($scope.selectedObject2.catv == false) {
             $scope.formData.position3 = "";
           }
-
+          $scope.fourthpre = true;
+        }
+      }
+    });
+    $scope.$watch('formData.company4', function() {
+      for (var i = 0; i < $scope.companies.length; i++) {
+        if ($scope.companies[i].name == $scope.formData.company4) {
+          $scope.selectedObject3 = $scope.companies[i];
+          if ($scope.selectedObject3.catv == false) {
+            $scope.formData.position4 = "";
+          }
+            $scope.fivpre = true;
+        }
+      }
+    });
+    $scope.$watch('formData.company5', function() {
+      for (var i = 0; i < $scope.companies.length; i++) {
+        if ($scope.companies[i].name == $scope.formData.company5) {
+          $scope.selectedObject4 = $scope.companies[i];
+          if ($scope.selectedObject4.catv == false) {
+            $scope.formData.position5 = "";
+          }
+            $scope.sixpre = true;
+        }
+      }
+    });
+    $scope.$watch('formData.company6', function() {
+      for (var i = 0; i < $scope.companies.length; i++) {
+        if ($scope.companies[i].name == $scope.formData.company6) {
+          $scope.selectedObject5 = $scope.companies[i];
+          if ($scope.selectedObject5.catv == false) {
+            $scope.formData.position6 = "";
+          }
         }
       }
     });
