@@ -102,7 +102,8 @@
           file.result = response.data;
         });
         if (response.data.error_code === 0) { //validate success
-          $window.alert('Success ' + response.config.data.file.name + 'uploaded. Response: ');
+          console.log('Success ' + response.config.data.file.name + 'uploaded. Response: ');
+          $window.location.replace("/usermain");
         } else {
           $window.alert('an error occured');
         }

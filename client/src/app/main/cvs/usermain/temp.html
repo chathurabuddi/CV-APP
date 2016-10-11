@@ -1,23 +1,24 @@
 <div class="template-5 p-16" layout="row" layout-align="space-between start">
     <div class="info">
         <div class="title secondary-text">
-            {{card.fname}}{{card.lname}}
+            Application summary
+        </div>
         </div>
         <div class="event h2">
-            {{card.fname}}{{card.lname}}
-        </div>
-        <div class="event h3">
             {{card.company1}}
+
         </div>
-        <div class="event h3">
+        <ul><li ng-repeat="position in card.position1">{{position}}</li></ul>
+        <div class="event h2">
             {{card.company2}}
         </div>
-        <div class="event h3">
+        <ul><li ng-repeat="position in card.position2">{{position}}</li></ul>
+        <div class="event h2">
             {{card.company3}}
         </div>
-        <div class="event h3">
-            {{card.cvpath}}
-        </div>
+        <ul><li ng-repeat="position in card.position3">{{position}}</li></ul>
+
+        <iframe id="fred"  title="PDF in an i-Frame" ng-src="{{card.cvpath}}" frameborder="1" scrolling="auto" height="1100" width="100%" ></iframe>
     </div>
 
     <div class="media ml-16">
