@@ -7,7 +7,7 @@
         .controller('viewCv', viewCv);
 
     /** @ngInject */
-    function viewCv($scope,$http,$location,$sce)
+    function viewCv($scope,$http,$location,$sce, $stateParams)
     {
 
         // Data
