@@ -12,28 +12,25 @@
       $scope.companies = response;
     });
 
-    $scope.uploadStatus=false;
+    $scope.uploadStatus = false;
 
-    $scope.companies = [{
-      name: 'MIT',
-      catv: true,
-      cat: ['SE', 'BA', 'QA','PM'],
 
-    }, {
-      name: '99X',
-      catv: true,
-      cat: ['SE', 'BA', 'QA'],
+    $http.get('/currentuser').then(function(result) {
+      $scope.userid = result.data._id;
+      $scope.userdata = result.data;
+      console.log($scope.userid);
 
-    }, {
-      name: 'Caklabs',
-      catv: false,
-      cat: [],
+      $http.post('/manageCv/getCv', {
+        id: $scope.userid
+      }).success(function(response) {
+        console.log("---------->" + response);
+        if (typeof response[0] !== 'undefined' && response[0] !== null) {
+          $scope.uploadStatus = true;
+          console.log("in here");
+        }
+        console.log(response);
 
-    }];
-
-    $http.get('/currentuser').then(function(result){
-          $scope.userid = result.data._id;
-          console.log($scope.userid);
+      });
     });
 
     $scope.searchTerm = null;
@@ -90,7 +87,7 @@
           if ($scope.selectedObject3.catv == false) {
             $scope.formData.position4 = "";
           }
-            $scope.fivpre = true;
+          $scope.fivpre = true;
         }
       }
     });
@@ -101,7 +98,7 @@
           if ($scope.selectedObject4.catv == false) {
             $scope.formData.position5 = "";
           }
-            $scope.sixpre = true;
+          $scope.sixpre = true;
         }
       }
     });
@@ -138,18 +135,23 @@
         url: ' /upload',
         data: {
           file: file,
-          fname: $scope.formData.firstname,
-          lname: $scope.formData.lastname,
-          email: $scope.formData.email,
-          mobilenumber: $scope.formData.mobilenumber,
+          fname: $scope.userdata.local.firstname,
+          lname: $scope.userdata.local.lastname,
+          email: $scope.userdata.local.email,
           telnumber: $scope.formData.telnumber,
           company1: $scope.formData.company1,
           company2: $scope.formData.company2,
           company3: $scope.formData.company3,
-          position1: $scope.formData.position1,
-          position2: $scope.formData.position2,
+          company4: $scope.formData.company4,
+          company5: $scope.formData.company5,
+          company6: $scope.formData.company6,
+          position1: $scope.formData.position1.toString(),
+          position2: $scope.formData.position2.toString(),
           position3: $scope.formData.position3,
-          userid:$scope.userid
+          position4: $scope.formData.position4,
+          position5: $scope.formData.position5,
+          position6: $scope.formData.position6,
+          userid: $scope.userid
         },
       });
 
