@@ -11,7 +11,7 @@
     {
         var vm = this;
         $http.get('/currentuser').then(function(result){
-          $scope.fname = result.data.firstname;
+          $scope.fname = result.data.local.firstname;
           console.log(result);
         });
         // Data
