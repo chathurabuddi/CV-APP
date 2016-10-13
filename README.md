@@ -9,7 +9,7 @@ Clone project:
 
 ## Architechture
 
-###Directory structure:
+### Directory structure:
 ```
 ├── api
 │   ├── controllers
@@ -26,7 +26,7 @@ Clone project:
 ```
 
 ## Setup Development Environment in Local Machine
-###1 Angular Client (Frontend)
+### 1 Angular Client (Frontend)
 To begin run the following commands in your terminal:
 
 Install dependencies:
@@ -38,6 +38,30 @@ Install gem 'sass'
 
     $ gem install sass
 
-Run development web-server:
+Build Client
 
-    $ gulp serve
+    $ gulp
+
+### 2 Development Web-server
+Run the following commands in your terminal:
+
+Install dependencies:
+
+    $ cd server
+    $ npm install
+
+Build Server
+
+    $ gulp
+
+### 3 Database
+
+Be sure to have [MongoDB](https://www.mongodb.com/) installed first.
+
+Run the following commands in your terminal:
+
+Start Database:
+
+    $ mongod --port 27017
+
+Access at [http://localhost:8080/](http://localhost:8080/)
