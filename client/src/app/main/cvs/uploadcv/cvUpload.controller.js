@@ -147,10 +147,10 @@
           company6: $scope.formData.company6,
           position1: $scope.formData.position1.toString(),
           position2: $scope.formData.position2.toString(),
-          position3: $scope.formData.position3,
-          position4: $scope.formData.position4,
-          position5: $scope.formData.position5,
-          position6: $scope.formData.position6,
+          position3: $scope.formData.position3.toString(),
+          position4: $scope.formData.position4.toString(),
+          position5: $scope.formData.position5.toString(),
+          position6: $scope.formData.position6.toString(),
           userid: $scope.userid
         },
       });
