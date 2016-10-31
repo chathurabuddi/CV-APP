@@ -11,17 +11,15 @@ Clone project:
 
 ### Directory structure:
 ```
-├── api
-│   ├── controllers
-│   ├── app
+├── client
+│   ├── gulp
+│   ├── src
 |  
 |   
-|── client
-|  |── src
-|  |  |── app
-|  |  |── assert
-|  |  |── sass
-|  |── docs
+|── server
+|  |── config
+|  |── controllers
+|  |── uploads
 |
 ```
 
